@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Apple, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
