@@ -80,7 +80,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-4 text-center mb-10">
             <h2 className="text-3xl font-bold tracking-tighter">Social Feed</h2>
             <p className="text-muted-foreground md:text-lg max-w-[600px]">
-              See what's happening in our community right now.
+              See what\'s happening in our community right now.
             </p>
           </div>
           <Suspense fallback={<div className="flex justify-center">Loading social feed...</div>}>
