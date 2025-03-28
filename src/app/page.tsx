@@ -1,103 +1,223 @@
-import Image from "next/image";
+import { Suspense } from "react"
+import Link from "next/link"
+import { ChevronRight } from "lucide-react"
+
+import AuthSection from "../components/auth-section"
+import SocialFeed from "../components/social-feed"
+import ProductsSection from "../components/products-section"
+import DonateSection from "../components/donate-section"
+import { Button } from "../components/ui/button"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
+          <Link href="/" className="font-bold text-xl">
+            WoofWoof
+          </Link>
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="#auth" className="text-sm font-medium hover:underline underline-offset-4">
+              Sign In
+            </Link>
+            <Link href="#social" className="text-sm font-medium hover:underline underline-offset-4">
+              Social Feed
+            </Link>
+            <Link href="#shop" className="text-sm font-medium hover:underline underline-offset-4">
+              Shop
+            </Link>
+            <Link href="#donate" className="text-sm font-medium hover:underline underline-offset-4">
+              Donate
+            </Link>
+          </nav>
+          <Button>Get Started</Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+              Welcome to our Modern Platform
+            </h1>
+            <p className="max-w-[700px] text-muted-foreground md:text-xl">
+              Connect, shop, and support all in one place. Join our community today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+              <Button size="lg" asChild>
+                <Link href="#auth">
+                  Sign Up Now <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="#shop">Explore Shop</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Auth Section */}
+      <section id="auth" className="w-full py-12 md:py-24 bg-background">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center gap-4 text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tighter">Join Our Community</h2>
+            <p className="text-muted-foreground md:text-lg max-w-[600px]">
+              Sign in with your phone number or social accounts to access all features.
+            </p>
+          </div>
+          <Suspense fallback={<div className="flex justify-center">Loading authentication...</div>}>
+            <AuthSection />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* Social Feed Section */}
+      <section id="social" className="w-full py-12 md:py-24 bg-muted">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center gap-4 text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tighter">Social Feed</h2>
+            <p className="text-muted-foreground md:text-lg max-w-[600px]">
+              See what's happening in our community right now.
+            </p>
+          </div>
+          <Suspense fallback={<div className="flex justify-center">Loading social feed...</div>}>
+            <SocialFeed />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* E-commerce Section */}
+      <section id="shop" className="w-full py-12 md:py-24 bg-background">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center gap-4 text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tighter">Shop Our Products</h2>
+            <p className="text-muted-foreground md:text-lg max-w-[600px]">
+              Discover our curated collection of premium products.
+            </p>
+          </div>
+          <Suspense fallback={<div className="flex justify-center">Loading products...</div>}>
+            <ProductsSection />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* Donate Section */}
+      <section id="donate" className="w-full py-12 md:py-24 bg-muted">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center gap-4 text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tighter">Support Our Mission</h2>
+            <p className="text-muted-foreground md:text-lg max-w-[600px]">
+              Your contribution helps us continue our work and make a difference.
+            </p>
+          </div>
+          <Suspense fallback={<div className="flex justify-center">Loading donation options...</div>}>
+            <DonateSection />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full py-6 md:py-12 border-t">
+        <div className="container px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium">Company</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium">Products</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    FAQ
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium">Resources</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Guides
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium">Legal</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Privacy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Terms
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                    Cookies
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 border-t pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-muted-foreground">© 2025 WoofWoof. All rights reserved.</p>
+            <div className="flex items-center gap-4 mt-4 md:mt-0">
+              <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                Privacy Policy
+              </Link>
+              <Link href="#" className="text-sm text-muted-foreground hover:underline">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
